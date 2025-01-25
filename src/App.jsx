@@ -3,17 +3,13 @@ import Suggestion, { updatePromise } from './Suggestion';
 import Circle from './Circle';
 // import Component from './Component';
 const Component = React.lazy(()=>import("./Component"))
-import OtpComponent from './OtpComponent';
-import { isIdentifier } from 'typescript';
+
 // updatePromise("sdsdsdsds")
 function delay(time) {
   return new Promise((res) => setTimeout(() => res("Done"), time));
 }
 let promise = null
-async function fetchData(url){
-  await delay(url*5000)
-  return url
-}
+
 function App() {
 const [arr,setArr] = useState([])
 
@@ -28,17 +24,10 @@ const [arr,setArr] = useState([])
       }
     })
     return isIntersection
- } // best way
+ }
 
  useEffect(()=>{
-  function handleClick(e){
-    const top = e.clientY
-    const left = e.clientX
-    console.log(top,left)
-    if(!checkIntersection(left,top)){
-      setArr(prev=>[...prev,[left,top]])
-    }
-  }
+
   document.addEventListener("click",handleAddCircle)
   return ()=>{
     document.removeEventListener("click",handleAddCircle)
